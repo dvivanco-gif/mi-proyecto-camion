@@ -1,0 +1,455 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  font-family: 'Manrope', sans-serif;
+}
+
+/* -------- Estilos del simulador (grupo 2) -------- */
+model-viewer {
+  --poster-color: #cc3d16;
+  --progress-bar-color: rgba(251, 20, 24, 0.5);
+  --progress-bar-height: 100px;
+}
+
+[data-color]::before {
+  content: "";
+  display: block;
+  position: absolute;
+  inset: -5px;
+  border: 10px solid transparent;
+  border-radius: 999px;
+}
+
+[data-color].active::before,
+[data-color]:focus::before {  
+  border-color: white;
+}
+.swiper-slide.bg-white {
+  background-color: #ffffff !important;
+}
+
+/* -------- Estilos del camión (grupo 1) -------- */
+.title {
+  font-size: 550px;
+  line-height: 1;
+  position: absolute;
+  top: -240px;
+  left: 0;
+  white-space: nowrap;
+  color: #E53935; /* rojo */
+  animation: loop-text 12s linear infinite;
+}
+
+@keyframes loop-text {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Camión */
+#car-block {
+  position: absolute;
+  bottom: 310px;   
+  left: -900px;      
+  width: 1100px;   /* ancho fijo */
+  height: 400px;   /* alto fijo */
+  z-index: 5;
+  animation: move-car 5s linear infinite;
+  animation-delay: 2s;
+}
+
+#car {
+  position: absolute;
+  top: -50px;
+  left: 0;
+  width: 1000px;   /* mismo ancho del contenedor */
+  height: auto;
+}
+@keyframes move-car {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(1800px); } /* cuánto se moverá */
+}
+
+/* Llantas con animación */
+.wheel {
+  position: absolute;
+  width: 67px;
+  height: 67px;
+  animation: spin 0.5s linear infinite;
+}
+
+.wheel1 { bottom: 185px; left: 152px; }
+.wheel2 { bottom: 183px; left: 228px; }
+.wheel3 { bottom: 174px; left: 621px; }
+.wheel4 { bottom: 173px; left: 703px; }
+.wheel5 { bottom: 171px; left: 863px; }
+
+@keyframes spin {
+  0%   { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+#inner-1 {
+  position: absolute;
+  bottom: 70px;   /* súbelo ajustando este valor */
+  left: 30px;      /* distancia desde el borde izquierdo */
+  z-index: 10;
+  color: #000;     /* texto visible sobre blanco */
+}
+
+#inner-1 h1 {
+  font-size: 80px;  /* fijo en px para que no varíe con zoom */
+  line-height: 1;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+
+#inner-1 h1 span {
+  font-weight: 700;
+}
+
+#inner-1 p {
+  font-size: 20px;  /* también fijo */
+  margin-top: 15px;
+}
+
+#p__ {
+  position: relative;
+  top: 190px;
+  left: -1014px;
+  font-size: 79px;
+  font-weight: 700;
+  text-shadow: -4px 0px 2px #0000006b;
+}
+
+#canvas {
+  position: absolute;
+  width: 1000px;
+  height: 400px;
+  left: 637px;
+  top: 16px;
+  z-index: 10;   /* asegura que quede encima */
+  pointer-events: none;
+}
+
+h3 {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+}
+
+@media (max-width: 470px) {
+  #p__ {
+    left: -90px;
+  }
+}
+
+.transition {
+  transition: transform 2s 9ms ease-out;
+}
+
+.linea1 {
+  width: 93%;
+  height: 98%;
+  margin: auto;
+  display: block;
+
+  /* estilos visuales */
+  opacity: 1;
+  filter: none;
+
+  /* animación */
+  transform-origin: center center;
+  animation: rotation 25s linear infinite backwards;
+
+  /* transición suave */
+  transition: all 0.4s cubic-bezier(0.37, 0.01, 0, 0.98);
+  transition-delay: 1s;
+}
+
+/* Animación de giro */
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.linea_wrap {
+  position: absolute;
+  left: -100px;   /* ajusta distancia desde el borde izquierdo */
+  top: 50%;     /* centrado vertical */
+  transform: translateY(-50%);
+  width: 900px; /* tamaño del círculo */
+  height: 900px;
+  z-index: 0;   /* detrás del cuadro rojo */
+}
+.swiper-slide {
+  position: relative !important;
+}
+/* círculo punteado pequeño */
+.linea1-small {
+  position: absolute;
+  width: 656px;   /* más chico */
+  height: 656px;
+  top: 13%;     /* ajusta posición */
+  left: 111px;    /* ajusta posición */
+  opacity: 0.7;   /* tenue */
+  z-index: 0;
+  animation: rotation 25s linear infinite; /* mismo giro */
+}
+
+/* estilo base para señales */
+.senal {
+  position: absolute;
+  width: 55px;
+  height: 55px;
+  opacity: 0.8;
+  animation: parpa 1.5s ease infinite forwards;
+}
+
+/* posiciones personalizadas */
+.senal-1 { top: 18px; left: 319px; animation-delay: 1s; }
+.senal-2 { top: 569px; left: 469px; animation-delay: 0.5s; }
+.senal-3 { top: 684px; left: 721px; animation-delay: -2s; }
+.senal-4 { top: 640px; left: 162px; animation-delay: 3s; }
+.senal-5 { top: 174px; left: 581px; animation-delay: 2s; }
+
+
+/* Animación parpadeo */
+@keyframes parpa {
+  0%, 100% { opacity: 0.1; transform: scale(1); }
+  50%      { opacity: 1;   transform: scale(1.2); }
+}
+.auto {
+  position: absolute;
+  width: 531px;    /* ajusta según lo grande que quieras */
+  bottom: 321px;    /* posición dentro del slide */
+  right: 397px;     /* posición desde el borde derecho */
+  z-index: 1;     /* detrás del auto y la señal */
+  transform: rotate(-90deg);
+}
+.linea2 {
+  position: absolute;
+  width: 520px;   /* 🔧 ajusta el tamaño */
+  height: 520px;  /* igual al width para mantener proporción */
+  top: 189px;     /* 🔧 posición desde arriba */
+  left: 178px;    /* 🔧 posición desde la izquierda */
+  opacity: 0.6;   /* 👀 lo hace visible pero no tan fuerte */
+  z-index: 0;     /* detrás del auto y la señal */
+  margin: auto;
+  padding: 0;
+  border: 0;
+}
+#inner-2 {
+  position: absolute;   /* 🔑 lo sacamos del flujo normal */
+  bottom: 5%;          /* lo pegamos abajo */
+  right: 5%;           /* lo pegamos a la derecha */
+  max-width: 600px;
+  background: rgba(229, 57, 53, 0.9);
+  padding: 2rem;
+  border-radius: 1rem;
+  z-index: 10;
+  text-align: justify;
+}
+.img-camion {
+  position: absolute;         /* 🔑 necesario para mover libre */
+  width: auto;
+  height: auto;
+  max-width: 5000px;
+  max-height: none;
+  bottom: 20%;                /* posición final */
+  left: 20%;                  /* posición final */
+  animation: entrarCamion 3s ease-out forwards;  /* 🚚 animación */
+  animation-play-state: paused;
+  z-index: 5;                 /* encima de la pista */
+}
+.slide3-bg {
+  background-image: url('https://ruta-de-tu-imagen.png');
+  background-size: cover;     /* ajusta para que ocupe todo */
+  background-position: center; /* centrado */
+  background-repeat: no-repeat;
+}
+
+/* Animación entrada diagonal */
+@keyframes entrarCamion {
+  0% {
+    transform: translateX(120%) translateY(-50px) rotate(5deg);
+    opacity: 0;
+  }
+  80% {
+    transform: translateX(-10%) translateY(20px) rotate(-2deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(0) translateY(0) rotate(0);
+    opacity: 1;
+  }
+}
+
+/* 📱 Ajustes para móviles de hasta 400px (ej. 360x720) */
+@media (max-width: 768px) {
+  .title {
+    font-size: 450px !important;
+    top: -230px !important;
+  }
+
+  #inner-1 {
+    bottom: 40px !important;
+    left: 20px;
+    right: 20px;
+  }
+
+  #inner-1 h1 {
+    font-size: 42px;
+    line-height: 1.2;
+  }
+
+  #inner-1 p {
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  #car-block {
+    position: absolute !important;
+    top: 23% !important;   /* 🔼 súbelo en móvil */
+    left: -1000px !important;    /* ajusta según quieras centrarlo */
+    transform: scale(0.8);      /* opcional: escalar un poco */
+    z-index: 10;  
+  }
+
+  #inner-1 .flex {
+    margin-top: 15px;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+  }
+
+  #inner-1 .flex a {
+    width: 100%;
+  }
+  .linea_wrap {
+    width: 440px;
+    height: 390px;
+    top: 27%;      /* sigue arriba */
+    left: -10%;
+  }
+  /* círculo punteado pequeño */
+  .linea1-small {
+    width: 280px;
+    height: 280px;
+    top: 13%;
+    left: 19%;
+  }
+  .auto {
+    width: 262px;
+    bottom: 21%;
+    right: 42%;
+  }
+    /* círculo de fondo */
+  .linea2 {
+    width: 200px;
+    height: 200px;
+    top: 24%;
+    left: 26%;
+  }
+    /* señales de vibración: mueve cada una */
+  .senal-1 { top: 8%; left: 12%; }
+  .senal-2 { top: 20%; left: 60%; }
+  .senal-3 { top: 70%; left: 35%; }
+  .senal-4 { top: 60%; left: 80%; }
+  .senal-5 { top: 90%; left: 8%; }
+
+  #inner-2 {
+    max-width: 85%;
+    right: 2%;
+    bottom: 5%;
+    font-size: 12px;
+    padding: 1rem;
+    text-align: justify;
+  }
+  .img-camion {
+    max-height: 760px;
+    width: auto;
+    margin-top: -70px;      /* la bajas */
+    margin-bottom: -180px;   /* espacio abajo */
+    margin-left: -100px;     /* centrada */
+    margin-right: auto;    /* centrada */
+    z-index: 0;
+  }
+  .pista-fondo {
+    position: absolute;
+    top: 75%;              /* súbelo (menor valor = más arriba) */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    height: 360px;
+    width: 100%;           /* que ocupe todo el ancho */
+    max-width: none;       /* elimina límite */
+    z-index: 0;
+    opacity: 0.9;
+    object-fit: cover; 
+  }
+}
+/* Ocultar scrollbar en navegadores modernos */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE y Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+/* Eventos scrollable */
+.eventos-scroll {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+}
+
+/* Scrollbar visible pero discreto */
+.eventos-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+.eventos-scroll::-webkit-scrollbar-thumb {
+  background: #aaa;
+  border-radius: 4px;
+}
+/* Imagen del timón */
+.timon-img {
+  max-width: 600px;   /* tamaño inicial */
+  width: 80%;         /* ajustable al viewport */
+  height: auto;
+  z-index: 1;
+  position: relative;
+}
+
+/* Nubes de comentarios */
+.comentario {
+  position: absolute;
+  background: rgba(229, 57, 53, 0.9); /* rojo semitransparente */
+  color: white;
+  padding: 8px 12px;
+  border-radius: 1rem;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 2;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .timon-img {
+    max-width: 350px;
+  }
+  .comentario {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+}
+
+
